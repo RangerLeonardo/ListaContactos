@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <style>
+        .error {
+            margin: 20px 0;
+            color: red;
+            font-size:18px;
+            font-weight:bold;
+        }
+        body {
+            background-color: #1e1e1e;
+            text-align: center;
+            color: white;
+            font-family:sans-serif;
+            font-weight:bold;
+
+        }
+        /* Centrar el contenedor */
+        .col-auto {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        /* Estilo para los labels */
+        label {
+          display: block;
+          margin-bottom: 10px;
+          margin-right: 10px;
+          text-align: Right;
+          width:70px;
+        }
+
+        /* Estilo para los inputs */
+        input {
+          width: auto;
+          padding: 10px;
+          margin-bottom: 20px;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+        }
+
+        /* Estilo para los botones */
+        .btn {
+          padding: 15px;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+          color: white;
+          font-weight: bold;
+          font-size: 16px;
+          transition: all 1s;
+        }
+        .btn:hover {
+
+            opacity: 0.65;
+        }
+
+        /* Estilo para el botón de guardar */
+        .btn-success {
+          background-color:Green;
+          margin-right: 10px;
+        }
+
+        /* Estilo para el botón de ver contactos */
+        .btn-info {
+          background-color: #03a9fc;
+          text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container text-center">
+        <h1 class="text-muted">Proyecto Contactos con Gradle y Spring Boot</h1>
+        <h2 class="display-6">Introduce un nuevo registro</h2>
+        <form th:action="@{/registro}" th:object="${persona}" method="post"  class="formulario">
+            <div class="col-auto">
+                <label x=30px for="nombre">Nombre:</label>
+                <input id="nombre" type="text" th:field="*{nombre}">
+                <div th:if="${#fields.hasErrors('nombre')}" th:errorclass="error" th:errors="*{nombre}"></div>
+            </div>
+            <div class="col-auto">
+                <label for="edad">Edad:</label>
+                <input id="edad" type="number" th:field="*{edad}">
+                <div th:if="${#fields.hasErrors('edad')}" th:errorclass="error" th:errors="*{edad}"></div>
+            </div>
+            <div class="col-auto">
+                <label for="numTelefono">Teléfono:</label>
+                <input id="numTelefono" type="text" th:field="*{numTelefono}">
+                <div th:if="${#fields.hasErrors('numTelefono')}" th:errorclass="error" th:errors="*{numTelefono}"></div>
+            </div>
+            <input type="submit" th:value="Guardar" class="btn btn-success"/>
+            <a href="/mis-contactos" class="btn btn-info" role="button">Ver mis contactos</a>
+
+        </form>
+    </div>
+</body>
+</html>
